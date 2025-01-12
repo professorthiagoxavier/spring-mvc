@@ -1,13 +1,18 @@
+
 package com.fiap.myapp.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import com.fiap.myapp.interceptors.CustomInterceptor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@Configurable 
-@EnableWebMvc 
-public class WebConfig implements WebMvcConfigurer { 
-    // Configurações personalizadas 
+@Configuration
+@EnableWebMvc
+public class WebConfig implements WebMvcConfigurer {
 
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new CustomInterceptor());
+	}
 }
-
